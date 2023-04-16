@@ -1,3 +1,20 @@
+## Forked from Original Repo: https://github.com/Xilinx/QNN-MO-PYNQ
+
+## Updates applied: 
+
+- Scripts updated to support VITIS_HLS 2022.1 and PYNQ 3.0.1 SD image
+- All bitstreams for Pynq board regenerated using Vivado 2022.1 and VITIS_HLS 2022.1
+- All notebooks edited to remove deprecated xlnk code for resetting FPGA
+- All notebooks retested on PYNQ-Z2 SD image 3.0.1
+
+- On machine that has Vivado/Vitis 2022.1 installed, clone this repo and follow the remaining instructions in original repo for hardware rebuild:
+`git clone https://github.com/m21aie249/QNN-MO-PYNQ.git --recursive`
+
+- On the Pynq-Z2 board running 3.0.1, use this command to install the notebooks:
+`sudo pip3 install git+https://github.com/m21aie249/QNN-MO-PYNQ.git`
+
+## Original README.MD
+
 # QNN-MO-PYNQ PIP INSTALL Package
 
 This repo contains the pip install package for Quantized Neural Network (QNN) on PYNQ using a Multi-Layer Offload (MO) architecture.

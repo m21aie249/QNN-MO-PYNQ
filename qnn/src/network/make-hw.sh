@@ -42,7 +42,7 @@ NETWORK=$1
 PLATFORM=$2
 MODE=$3
 PATH_TO_VIVADO=$(which vivado)
-PATH_TO_VIVADO_HLS=$(which vivado_hls)
+PATH_TO_VIVADO_HLS=$(which vitis_hls)
 
 if [ -z "$XILINX_QNN_ROOT" ]; then
     echo "Need to set XILINX_QNN_ROOT"
@@ -85,10 +85,10 @@ VIVADO_SCRIPT=$VIVADO_SCRIPT_DIR/make-vivado-proj.tcl
 
 if [[ ("$PLATFORM" == "pynqZ1-Z2") ]]; then
   PLATFORM_PART="xc7z020clg400-1"
-  TARGET_CLOCK="10"
+  TARGET_CLOCK="5"
 elif [[ ("$PLATFORM" == "ultra96") ]]; then
   PLATFORM_PART="xczu3eg-sbva484-1-i"
-  TARGET_CLOCK="5"
+  TARGET_CLOCK="3"
 else
   echo "Error: Platform not supported. Please choose between pynqZ1-Z2 and ultra96."
   exit 1
@@ -110,7 +110,7 @@ if [[ ("$MODE" == "h") || ("$MODE" == "a")  ]]; then
   OLDDIR=$(pwd)
   echo "Calling Vivado HLS for hardware synthesis..."
   cd $HLS_OUT_DIR/..
-  vivado_hls -f $HLS_SCRIPT -tclargs $NETWORK $PLATFORM $HLS_SRC_DIR $PLATFORM_PART $TARGET_CLOCK $NETWORK_JSON
+  vitis_hls -f $HLS_SCRIPT -tclargs $NETWORK $PLATFORM $HLS_SRC_DIR $PLATFORM_PART $TARGET_CLOCK $NETWORK_JSON
   if cat $VIVADO_HLS_LOG | grep "ERROR"; then
     echo "Error in Vivado_HLS"
     exit 1	
